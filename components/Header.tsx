@@ -53,9 +53,9 @@ export default function Header() {
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-sm">
                 <li>
-                  <a className="header-link" href="#">
+                  <Link className="header-link" href="/">
                     Home
-                  </a>
+                  </Link>
                 </li>
 
                 <li
@@ -89,38 +89,38 @@ export default function Header() {
                   {isDropdownOpen && (
                     <ul className="absolute left-0 pt-2 w-44 bg-white shadow-lg rounded-md overflow-hidden transition-opacity duration-300">
                       <li>
-                        <a className="header-dropdown" href="#">
+                        <Link className="header-dropdown" href="#">
                           Education
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a className="header-dropdown" href="#">
+                        <Link className="header-dropdown" href="#">
                           Healthcare
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a className="header-dropdown" href="#">
+                        <Link className="header-dropdown" href="#">
                           Environment
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   )}
                 </li>
 
                 <li>
-                  <a className="header-link" href="#">
+                  <Link className="header-link" href="#">
                     Testimonials
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="header-link" href="#">
+                  <a className="header-link" href="/contact">
                     Contact Us
                   </a>
                 </li>
                 <li>
-                  <a className="header-link" href="#">
+                  <Link className="header-link" href="/about">
                     About Us
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -129,18 +129,18 @@ export default function Header() {
           {/* Buttons and Mobile Menu */}
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex sm:gap-4">
-              <a
+              <Link
                 className="rounded-md bg-gray-300 px-5 py-2.5 text-sm font-medium text-teal-600 shadow transition hover:bg-gray-200"
                 href="#"
               >
                 Login
-              </a>
-              <a
+              </Link>
+              <Link
                 className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow transition hover:bg-teal-700"
-                href="#"
+                href="/donate"
               >
                 Donate
-              </a>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -190,9 +190,9 @@ export default function Header() {
           <nav className="md:hidden mt-2 mb-2">
             <ul className="space-y-2 text-sm">
               <li>
-                <a className="mobile-hover" href="#">
+                <Link className="mobile-hover" href="/">
                   Home
-                </a>
+                </Link>
               </li>
               
               <li className="relative">
@@ -222,19 +222,19 @@ export default function Header() {
                 {isDropdownOpen && (
                   <ul className="pl-4 space-y-2">
                     <li>
-                      <a className="mobile-hover" href="#">
+                      <Link className="mobile-hover" href="/education">
                         Education
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a className="mobile-hover" href="#">
+                      <Link className="mobile-hover" href="#">
                         Healthcare
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a className="mobile-hover" href="#">
+                      <Link className="mobile-hover" href="#">
                         Environment
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 )}
@@ -245,25 +245,25 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link className="mobile-hover" href="#">
+                <Link className="mobile-hover" href="/contact">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <a className="mobile-hover" href="#">
+                <Link className="mobile-hover" href="/about">
                   About Us
-                </a>
+                </Link>
               </li>
               <div className="bg-teal-700 cursor-pointer rounded py-2 px-2">
                 <li>
-                  <Link className=" text-white" href="#">
+                  <Link className=" text-white" href="/donate">
                     Donate
                   </Link>
                 </li>
               </div>
               <div className="bg-gray-100 cursor-pointer rounded py-2 px-2">
                 <li>
-                  <Link className=" text-teal-600" href="#">
+                  <Link className=" text-teal-600" href="/login">
                     Login
                   </Link>
                 </li>
