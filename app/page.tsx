@@ -1,7 +1,11 @@
+import Banner from "./sections/banner"
 
 const Home = () => {
   return (
-    <div className="text-3xl text-center text-blue-600">Home Page</div>
+    <div>
+      <Banner/>
+     
+    </div>
   )
 }
 
