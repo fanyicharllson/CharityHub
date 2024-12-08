@@ -4,7 +4,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Savelife from "@/public/assets/images/savelife.jpg";
 import Link from "next/link";
-import ButtonLink from "@/components/ButtonLink";
 import { FaHeartbeat, FaHandsHelping, FaSeedling } from "react-icons/fa";
 
 const SaveLife = () => {
@@ -38,15 +37,15 @@ const SaveLife = () => {
                 Join Our Mission to Save Lives
               </h2>
               <p className="mt-4 text-lg text-gray-700">
-                Every year, millions of people lose their lives due to preventable
-                causes. Together, we can change this. Your contribution helps us
-                provide essential resources, medical aid, and support to those in
-                dire need.
+                Every year, millions of people lose their lives due to
+                preventable causes. Together, we can change this. Your
+                contribution helps us provide essential resources, medical aid,
+                and support to those in dire need.
               </p>
               <p className="text-lg text-gray-700">
-                Be the reason someone smiles today. Be the change you want to see
-                in the world. Every small act of kindness has the power to save a
-                life.
+                Be the reason someone smiles today. Be the change you want to
+                see in the world. Every small act of kindness has the power to
+                save a life.
               </p>
 
               {/* Icons Section */}
@@ -61,7 +60,9 @@ const SaveLife = () => {
                 </div>
                 <div className="flex flex-col items-center">
                   <FaSeedling className="text-green-500 text-4xl mb-2" />
-                  <p className="font-semibold text-gray-900">Sustainable Solutions</p>
+                  <p className="font-semibold text-gray-900">
+                    Sustainable Solutions
+                  </p>
                 </div>
               </div>
 

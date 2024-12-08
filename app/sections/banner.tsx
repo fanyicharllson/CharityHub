@@ -15,7 +15,7 @@ const Banner = () => {
     <section className="relative bg-[url(/assets/images/banner.jpg)] bg-cover bg-center bg-no-repeat">
       <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-transparent"></div>
 
-      <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
+      <div className="relative mx-auto max-w-screen-2xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
         <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -23,7 +23,7 @@ const Banner = () => {
           //  {...{ className: clsx("your-class") }}
           className="max-w-xl text-center sm:text-left"
         >
-          <h1 className="text-4xl pt-14 max-md:pt-0 font-extrabold tracking-tight text-white sm:text-6xl sm:leading-tight drop-shadow-lg">
+          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl sm:leading-tight drop-shadow-lg">
             Make a Difference,
             <MotionStrong
               initial={{ opacity: 0, scale: 0.8 }}
