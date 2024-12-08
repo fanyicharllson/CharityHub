@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import Header from "@/components/Header";
 
 export const metadata = {
   title: "CharityHub",
@@ -11,7 +12,8 @@ const Rootlayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <html lang="en">
       <body>
         <main>
-            {children}
+         <Header/>
+          {children}
         </main>
       </body>
     </html>
