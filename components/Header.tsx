@@ -114,12 +114,12 @@ export default function Header() {
                 </li>
                 <li>
                   <a className="header-link" href="#">
-                    Contact Us
+                    Contact
                   </a>
                 </li>
                 <li>
                   <a className="header-link" href="#">
-                    About Us
+                    About
                   </a>
                 </li>
               </ul>
@@ -222,7 +222,7 @@ export default function Header() {
               </li>
               <li>
                 <a className="mobile-hover" href="#">
-                  About Us
+                  About
                 </a>
               </li>
               <li className="relative">
@@ -276,7 +276,7 @@ export default function Header() {
               </li>
               <li>
                 <Link className="mobile-hover" href="#">
-                  Contact Us
+                  Contact
                 </Link>
               </li>
               <div className="bg-teal-700 cursor-pointer rounded py-2 px-2">
