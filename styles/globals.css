@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+body {
+    min-height: 100vh;
+}
+
+/*Components.css */
+@layer components {
+    /* Navigation link */
+.header-link {
+    @apply text-gray-800  transition hover:text-teal-600;
+}
+
+/*  header-dropdown styling */
+.header-dropdown {
+    @apply block px-4 py-2 text-sm text-gray-500 hover:bg-teal-50 hover:text-teal-600;
+}
+
+
+/* Mobile header-styling */
+.mobile-hover {
+    @apply block  text-gray-500 hover:bg-teal-50 hover:text-teal-600 transition py-2 px-2 rounded-md;
+}
+
+}
+
