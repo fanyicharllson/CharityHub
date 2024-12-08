@@ -114,12 +114,12 @@ export default function Header() {
                 </li>
                 <li>
                   <a className="header-link" href="#">
-                    Contact
+                    Contact Us
                   </a>
                 </li>
                 <li>
                   <a className="header-link" href="#">
-                    About
+                    About Us
                   </a>
                 </li>
               </ul>
@@ -129,32 +129,6 @@ export default function Header() {
           {/* Buttons and Mobile Menu */}
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex sm:gap-4">
-              <a href="" className="flex items-center">
-                <svg
-                  className="h-6 block"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  stroke="#000000"
-                  strokeWidth="0.00024000000000000003"
-                >
-                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    {" "}
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M11.203 6.02337C7.59276 6.99074 5.45107 10.6948 6.41557 14.2943C7.38006 17.8938 11.0868 20.0307 14.6971 19.0634C16.1096 18.6849 17.2975 17.8877 18.1626 16.8409C15.1968 17.3646 12.2709 15.546 11.4775 12.585C10.7644 9.92365 12.0047 7.20008 14.3182 5.92871C13.3186 5.72294 12.2569 5.74098 11.203 6.02337ZM4.96668 14.6825C3.78704 10.2801 6.40707 5.75553 10.8148 4.57448C12.968 3.99752 15.1519 4.3254 16.9581 5.32413L16.6781 6.72587C16.4602 6.75011 16.241 6.79108 16.0218 6.8498C13.6871 7.47537 12.303 9.8703 12.9264 12.1968C13.5497 14.5233 15.9459 15.9053 18.2806 15.2797C18.7257 15.1604 19.1351 14.9774 19.5024 14.7435L20.5991 15.6609C19.6542 17.9633 17.6796 19.8171 15.0853 20.5123C10.6776 21.6933 6.14631 19.085 4.96668 14.6825Z"
-                      fill="#080341"
-                    ></path>{" "}
-                  </g>
-                </svg>
-              </a>
               <a
                 className="rounded-md bg-gray-300 px-5 py-2.5 text-sm font-medium text-teal-600 shadow transition hover:bg-gray-200"
                 href="#"
@@ -220,11 +194,7 @@ export default function Header() {
                   Home
                 </a>
               </li>
-              <li>
-                <a className="mobile-hover" href="#">
-                  About
-                </a>
-              </li>
+              
               <li className="relative">
                 {/* Mobile Dropdown */}
                 <button
@@ -276,8 +246,13 @@ export default function Header() {
               </li>
               <li>
                 <Link className="mobile-hover" href="#">
-                  Contact
+                  Contact Us
                 </Link>
+              </li>
+              <li>
+                <a className="mobile-hover" href="#">
+                  About Us
+                </a>
               </li>
               <div className="bg-teal-700 cursor-pointer rounded py-2 px-2">
                 <li>
