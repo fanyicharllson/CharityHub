@@ -14,13 +14,20 @@ export default function Header() {
           <div className="flex items-center">
             <Link className="flex text-teal-600 items-center gap-0" href="/">
               <span className="sr-only">CharityHub Home</span>
-              <svg className="h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                className="h-8"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
                   d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6.42 3.42 5 5.5 5c1.54 0 3.04.99 3.57 2.36h1.87C15.46 5.99 16.96 5 18.5 5 20.58 5 22 6.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
                   fill="currentColor"
                 />
               </svg>
-              <span className="ml-2 text-xl font-bold text-teal-600">CharityHub</span>
+              <span className="ml-2 text-xl font-bold text-teal-600">
+                CharityHub
+              </span>
             </Link>
           </div>
 
@@ -29,17 +36,17 @@ export default function Header() {
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-sm">
                 <li>
-                  <a className="header-link" href="#">Home</a>
+                  <a className="header-link" href="#">
+                    Home
+                  </a>
                 </li>
-                <li>
-                  <a className="header-link" href="#">About Us</a>
-                </li>
-                <li
-                  className="relative"
-                  onMouseEnter={() => setIsDropdownOpen(true)}
-                  onMouseLeave={() => setIsDropdownOpen(false)}
-                >
+
+                <li className="relative">
+                  {/* Desktop Dropdown */}
                   <button
+                    // onMouseEnter={() => setIsDropdownOpen(true)}
+                    // onMouseLeave={() => setIsDropdownOpen(false)}
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     className="flex items-center gap-2 header-link"
                   >
                     Causes
@@ -53,40 +60,43 @@ export default function Header() {
                       stroke="currentColor"
                       strokeWidth="2"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19 9l-7 7-7-7"
+                      />
                     </svg>
                   </button>
                   {isDropdownOpen && (
                     <ul className="absolute left-0 pt-2 w-40 bg-white shadow-lg rounded-md overflow-hidden transition-opacity duration-300">
                       <li>
-                        <a
-                          className="header-dropdown"
-                          href="#"
-                        >
+                        <a className="header-dropdown" href="#">
                           Education
                         </a>
                       </li>
                       <li>
-                        <a
-                          className="header-dropdown"
-                          href="#"
-                        >
+                        <a className="header-dropdown" href="#">
                           Healthcare
                         </a>
                       </li>
                       <li>
-                        <a
-                          className="header-dropdown"
-                          href="#"
-                        >
+                        <a className="header-dropdown" href="#">
                           Environment
                         </a>
                       </li>
                     </ul>
                   )}
                 </li>
+
                 <li>
-                  <a className="header-link" href="#">Donate</a>
+                  <a className="header-link" href="#">
+                    Testimonials
+                  </a>
+                </li>
+                <li>
+                  <a className="header-link" href="#">
+                    About Us
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -99,15 +109,11 @@ export default function Header() {
                 className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow transition hover:bg-teal-700"
                 href="#"
               >
-                Login
-              </a>
-              <a
-                className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 shadow transition hover:bg-gray-200"
-                href="#"
-              >
-                Register
+                Donate
               </a>
             </div>
+
+            {/* Mobile Menu Button */}
             <div className="block md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -122,7 +128,11 @@ export default function Header() {
                     stroke="currentColor"
                     strokeWidth="2"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 ) : (
                   <svg
@@ -133,7 +143,11 @@ export default function Header() {
                     stroke="currentColor"
                     strokeWidth="2"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
                   </svg>
                 )}
               </button>
@@ -146,23 +160,69 @@ export default function Header() {
           <nav className="md:hidden mt-2 mb-2">
             <ul className="space-y-2 text-sm">
               <li>
-                <a className="mobile-hover" href="#">Home</a>
+                <a className="mobile-hover" href="#">
+                  Home
+                </a>
               </li>
               <li>
-                <a className="mobile-hover" href="#">About Us</a>
+                <a className="mobile-hover" href="#">
+                  About Us
+                </a>
               </li>
-              <li>
-                <a className="mobile-hover" href="#">Causes</a>
+              <li className="relative">
+                {/* Mobile Dropdown */}
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="flex items-center gap-2 mobile-hover"
+                >
+                  Causes
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-5 w-5 transition-transform duration-300 ${
+                      isDropdownOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                {isDropdownOpen && (
+                  <ul className="pl-4 space-y-2">
+                    <li>
+                      <a className="mobile-hover" href="#">
+                        Education
+                      </a>
+                    </li>
+                    <li>
+                      <a className="mobile-hover" href="#">
+                        Healthcare
+                      </a>
+                    </li>
+                    <li>
+                      <a className="mobile-hover" href="#">
+                        Environment
+                      </a>
+                    </li>
+                  </ul>
+                )}
               </li>
-              <li>
+              <div className="bg-teal-700 cursor-pointer rounded py-2 px-2">
+                <li>
+                  <Link className=" text-white" href="#">
+                    Donate
+                  </Link>
+                </li>
+              </div>
+              {/* <li>
                 <a className="mobile-hover" href="#">Donate</a>
-              </li>
-              <li>
-                <a className="mobile-hover" href="#">Login</a>
-              </li>
-              <li>
-                <a className="mobile-hover" href="#">Register</a>
-              </li>
+              </li> */}
             </ul>
           </nav>
         )}
