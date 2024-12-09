@@ -17,13 +17,13 @@ const SaveLife = () => {
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
   };
 
   const textVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
   };
 
   const iconVariants = {
@@ -58,9 +58,7 @@ const SaveLife = () => {
 
           {/* Text Content Section */}
           <motion.div variants={textVariants} className="space-y-6">
-            <h2 className="h2-title">
-              Join Our Mission to Save Lives
-            </h2>
+            <h2 className="h2-title">Join Our Mission to Save Lives</h2>
             <p className="mt-4 text-lg text-gray-700">
               Every year, millions of people lose their lives due to preventable
               causes. Together, we can change this. Your contribution helps us
