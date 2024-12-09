@@ -58,7 +58,7 @@ const SaveLife = () => {
 
           {/* Text Content Section */}
           <motion.div variants={textVariants} className="space-y-6">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="h2-title">
               Join Our Mission to Save Lives
             </h2>
             <p className="mt-4 text-lg text-gray-700">

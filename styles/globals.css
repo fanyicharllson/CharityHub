@@ -32,11 +32,19 @@ body {
     @apply block  text-gray-500 hover:bg-teal-50 hover:text-teal-600 transition py-2 px-2 rounded-md;
 }
 
+/* Card */
+.card {
+    @apply h-64 rounded-lg bg-gray-200 shadow-lg;
+}
+
 }
 
 @layer utilities {
     .link-btn {
         @apply bg-teal-600 focus:outline-none rounded focus:ring active:bg-teal-500 px-12 py-3 text-white hover:bg-teal-700;
+    }
+    .h2-title {
+        @apply text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl;
     }
 }
 
