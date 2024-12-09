@@ -12,23 +12,24 @@ const cards = () => {
             text="We extend a helping hand to communities in need, providing essential support and relief to improve lives."
             icon={
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
+                fill="currentColor"
                 className="text-blue-500 w-12 h-12"
+                version="1.1"
+                id="Icons"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
               >
-                <path
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M15.75 9.75a3 3 0 10-6 0v3.75H7.5a3 3 0 100 6h1.803a2.25 2.25 0 004.395 0h1.803a3 3 0 100-6h-2.25V9.75z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 5.25V3.375m0 1.875a2.25 2.25 0 11-4.5 0h4.5zm6 0a2.25 2.25 0 11-4.5 0h4.5zM12 3.375V1.5m6 3.75h.015m-12-.001H6m12 0h.015m-12-.001H6"
-                />
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  {" "}
+                  <path d="M29.9,16.5C29.7,16.2,29.4,16,29,16c-2.2,0-4.3,1-5.6,2.8L22.5,20c-1.1,1.3-2.8,2-4.5,2h-3c-0.6,0-1-0.4-1-1s0.4-1,1-1h1.9 c1.6,0,3.1-1.3,3.1-2.9c0,0,0-0.1,0-0.1c0-0.5-0.5-1-1-1l-6.1,0c-3.6,0-6.5,1.6-8.1,4.2l-2.7,4.2c-0.2,0.3-0.2,0.7,0,1l3,5 c0.1,0.2,0.4,0.4,0.6,0.5c0.1,0,0.1,0,0.2,0c0.2,0,0.4-0.1,0.6-0.2c3.8-2.5,8.2-3.8,12.7-3.8c3.3,0,6.3-1.8,7.9-4.7l2.7-4.8 C30,17.2,30,16.8,29.9,16.5z"></path>{" "}
+                  <path d="M11,11v3.2c0.6-0.1,1.3-0.2,1.9-0.2H19c1.3,0,2.4,0.8,2.8,2H22c0.6,0,1-0.4,1-1v-4c0.6,0,1-0.4,1-1V6c0-0.6-0.4-1-1-1h-1.2 C21.9,4.7,22,4.4,22,4c0-1.7-1.3-3-3-3c-0.8,0-1.5,0.3-2,0.8C16.5,1.3,15.8,1,15,1c-1.7,0-3,1.3-3,3c0,0.4,0.1,0.7,0.2,1H11 c-0.6,0-1,0.4-1,1v4C10,10.6,10.4,11,11,11z M18,4c0-0.6,0.4-1,1-1s1,0.4,1,1s-0.4,1-1,1h-1V4z M15,3c0.6,0,1,0.4,1,1v1h-1 c-0.6,0-1-0.4-1-1S14.4,3,15,3z"></path>{" "}
+                </g>
               </svg>
             }
           />
@@ -61,20 +62,7 @@ const cards = () => {
             heading="We Nourish"
             text="We fight hunger by ensuring access to nutritious meals, promoting healthier and stronger communities."
             icon={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="text-green-500 w-12 h-12"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 2.25c1.5 0 3.172.346 4.5 1.5m-9 0c1.328-1.154 3-.75 4.5-1.5m0 0v3m0 0a6.75 6.75 0 016.75 6.75C18.75 14.743 15 18 12 18s-6.75-3.257-6.75-5.25A6.75 6.75 0 0112 5.25zm0 7.5v.008-.008zm0 0v.008-.008zm0 0a.749.749 0 11-1.5 0 .749.749 0 011.5 0z"
-                />
-              </svg>
+              <svg fill="currentColor" className="w-12 h-12 text-red-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
             }
           />
           <CardComponent
