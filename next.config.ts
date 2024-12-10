@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
       use: ['@svgr/webpack'],
     });
     return config;
+  },
+  images: {
+    domains: ['images.unsplash.com'], // Add other domains if needed
   }, 
 };
 
