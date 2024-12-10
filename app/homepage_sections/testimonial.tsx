@@ -60,7 +60,7 @@ export default function Home() {
 
   return (
     <section className="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 mx-auto max-w-screen-xl">
-      <div className="mx-auto max-w-[1340px] px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:pe-0 lg:ps-8 xl:py-24">
+      <div className="mx-auto max-w-[1340px]  lg:me-0 lg:pe-0 lg:ps-8 xl:py-24">
         <div className="max-w-7xl items-end justify-between sm:flex sm:pe-6 lg:pe-8">
           <h2 className="h2-title text-gray-900">
             Transforming Lives Through <br></br> Your Generosity
