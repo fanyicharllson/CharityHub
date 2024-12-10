@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/footer";
 
 
 export const metadata = {
@@ -16,6 +17,7 @@ const Rootlayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
          <Header/>
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );
