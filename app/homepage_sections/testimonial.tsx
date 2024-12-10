@@ -61,6 +61,10 @@ export default function Home() {
   return (
     <section className="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 mx-auto max-w-screen-xl">
       <div className="mx-auto max-w-[1340px]  lg:me-0 lg:pe-0 lg:ps-8 xl:py-24">
+      <div className="flex justify-start items-center gap-2 text-left pb-4">
+            <div className="bg-teal-500 w-12 h-[3px] flex flex-col justify-center items-center text-center"></div>
+            <h4 className="text-teal-500 font-bold text-left">Our Testimonial</h4>
+          </div>
         <div className="max-w-7xl items-end justify-between sm:flex sm:pe-6 lg:pe-8">
           <h2 className="h2-title text-gray-900">
             Transforming Lives Through <br></br> Your Generosity
@@ -79,7 +83,11 @@ export default function Home() {
                 stroke="currentColor"
                 className="w-5 h-5 rtl:rotate-180"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
               </svg>
             </button>
             <button
@@ -95,7 +103,11 @@ export default function Home() {
                 stroke="currentColor"
                 className="w-5 h-5 rtl:rotate-180"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
               </svg>
             </button>
           </div>
@@ -120,11 +132,17 @@ export default function Home() {
                       ))}
                     </div>
                     <div className="mt-4">
-                      <p className="text-2xl font-bold text-teal-600 sm:text-3xl">{testimonial.title}</p>
-                      <p className="mt-4 leading-relaxed text-gray-700">{testimonial.quote}</p>
+                      <p className="text-2xl font-bold text-teal-600 sm:text-3xl">
+                        {testimonial.title}
+                      </p>
+                      <p className="mt-4 leading-relaxed text-gray-700">
+                        {testimonial.quote}
+                      </p>
                     </div>
                   </div>
-                  <footer className="mt-4 text-sm font-medium text-gray-700 sm:mt-6">{testimonial.author}</footer>
+                  <footer className="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
+                    {testimonial.author}
+                  </footer>
                 </blockquote>
               </div>
             ))}
