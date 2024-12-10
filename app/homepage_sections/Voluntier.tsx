@@ -14,7 +14,7 @@ const VolunteerSection: React.FC = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left Text Section */}
         <div>
-          <h2 className="text-4xl font-bold text-teal-600 mb-4">
+          <h2 className="text-2xl font-bold text-teal-600 mb-4">
             Make a Difference Today. Shape a Better Tomorrow.
           </h2>
           <p className="text-lg text-gray-600 mb-6">
@@ -78,6 +78,20 @@ const VolunteerSection: React.FC = () => {
                 type="tel"
                 id="phone"
                 placeholder="Enter your phone number"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="date-of-birth"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Date of Birth
+              </label>
+              <input
+                type="date"
+                id="date-of-birth"
+                placeholder="Enter your date of birth"
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
