@@ -63,7 +63,7 @@ export default function Home() {
       <div className="mx-auto max-w-[1340px]  lg:me-0 lg:pe-0 lg:ps-8 xl:py-24">
       <div className="flex justify-start items-center gap-2 text-left pb-4">
             <div className="bg-teal-500 w-12 h-[3px] flex flex-col justify-center items-center text-center"></div>
-            <h4 className="text-teal-500 font-bold text-left">Our Testimonial</h4>
+            <h4 className="text-teal-500 font-bold text-left">Our Testimonials</h4>
           </div>
         <div className="max-w-7xl items-end justify-between sm:flex sm:pe-6 lg:pe-8">
           <h2 className="h2-title text-gray-900">

@@ -4,6 +4,7 @@ import Card from "./homepage_sections/card"
 import PopularCauses from "./homepage_sections/popularcauses"
 import Voluntier from "./homepage_sections/Voluntier"
 import TestimonialSlider from "./homepage_sections/testimonial"
+import  Faqs from "./homepage_sections/faqs"
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <PopularCauses />
       <Voluntier />
       <TestimonialSlider />
+      <Faqs />
     </div>
   )
 }
