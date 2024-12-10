@@ -2,7 +2,7 @@ import CardComponent from "@/components/CardComponent";
 const cards = () => {
   return (
     <section className="bg-gray-100 px-4 py-16 sm:px-6 lg:px-8 mx-auto max-w-screen-xl">
-      <div className="">
+      <div className="py-16">
         <div className="mx-auto flex justify-center items-center pb-8">
           <h2 className="h2-title">Our Mission in Action</h2>
         </div>
