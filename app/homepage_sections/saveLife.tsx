@@ -32,27 +32,28 @@ const SaveLife = () => {
   };
 
   return (
-    <section>
+    <section className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div
         ref={ref}
-        className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8"
+       
       >
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 gap-8 xl:grid-cols-2 md:items-center"
+          className="grid grid-cols-1 gap-8 lg:grid-cols-2 md:items-center"
         >
           {/* Animated Image Section */}
           <motion.div
             variants={imageVariants}
-            className="rounded-lg shadow-lg max-xl:w-full object-contain"
+            className="rounded-lg shadow-lg max-lg:w-full"
           >
             <Image
               src={Savelife}
               alt="Save a Life Campaign"
               width={600}
               height={600}
+              className="rounded-md object-contain max-xl:w-full"
             />
           </motion.div>
 
