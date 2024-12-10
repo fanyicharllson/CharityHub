@@ -42,7 +42,11 @@ const PopularCauses = () => {
 
   return (
     <section className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-      <h2 className="text-center text-3xl font-bold text-gray-900">Popular Causes</h2>
+      <div className="flex justify-center items-center gap-2 text-center pb-4">
+        <div className="bg-teal-500 w-12 h-[3px] flex flex-col justify-center items-center text-center"></div>
+      <h4 className="text-teal-500 font-bold">Latest Causes</h4>
+      </div>
+      <h2 className="h2-title text-center">Find the popular cause <br></br> and donate them</h2>
       <p className="mx-auto mt-4 max-w-2xl text-center text-gray-600">
         Discover some of the impactful causes we are supporting. Join us to make a difference.
       </p>
