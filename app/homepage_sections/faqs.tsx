@@ -62,7 +62,7 @@ const FaqSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen">
+    <section className="relative min-h-screen w-full">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -75,8 +75,8 @@ const FaqSection = () => {
       </div>
 
       {/* FAQ Content */}
-      <div className="relative z-10 container mx-auto pt-28 flex flex-col items-center justify-center">
-        <div className="bg-gray-100 bg-opacity-90 rounded-lg shadow-lg p-8 max-w-4xl w-full">
+      <div className="relative z-10 container mx-auto pt-28 max-sm:pt-5 flex flex-col items-center justify-center">
+        <div className="bg-gray-100 bg-opacity-90 rounded-lg shadow-lg p-8 max-w-5xl w-full max-sm:w-[95%]">
           <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
             Frequently Asked Questions
           </h2>

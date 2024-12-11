@@ -46,10 +46,16 @@ export default function Home() {
           spacing: 16,
         },
       },
-      "(max-width: 900px)": {
+      "(max-width: 990px)": {
+        slides: {
+          perView: 2,
+          spacing: 10,
+        },
+      },
+      "(max-width: 600px)": {
         slides: {
           perView: 1,
-          spacing: 8,
+          spacing: 10,
         },
       },
     },
@@ -59,12 +65,14 @@ export default function Home() {
   const nextSlide = () => instanceRef.current?.next();
 
   return (
-    <section className="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 mx-auto max-w-screen-xl">
+    <section className="mb-8 px-6 py-16 sm:px-6 lg:px-8 mx-auto max-w-screen-xl w-full">
       <div className="mx-auto max-w-[1340px]  lg:me-0 lg:pe-0 lg:ps-8 xl:py-24">
-      <div className="flex justify-start items-center gap-2 text-left pb-4">
-            <div className="bg-teal-500 w-12 h-[3px] flex flex-col justify-center items-center text-center"></div>
-            <h4 className="text-teal-500 font-bold text-left">Our Testimonials</h4>
-          </div>
+        <div className="flex justify-start items-center gap-2 text-left pb-4">
+          <div className="bg-teal-500 w-12 h-[3px] flex flex-col justify-center items-center text-center"></div>
+          <h4 className="text-teal-500 font-bold text-left">
+            Our Testimonials
+          </h4>
+        </div>
         <div className="max-w-7xl items-end justify-between sm:flex sm:pe-6 lg:pe-8">
           <h2 className="h2-title text-gray-900">
             Transforming Lives Through <br></br> Your Generosity
@@ -116,7 +124,7 @@ export default function Home() {
           <div ref={sliderRef} className="keen-slider">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="keen-slider__slide">
-                <blockquote className="flex h-full flex-col justify-between  bg-white p-6 shadow-sm sm:p-8 lg:p-12">
+                <blockquote className="flex h-full flex-col max-lg:mx-4 justify-between rounded-md  bg-gray-100 p-6 shadow-2xl sm:p-8 lg:p-12">
                   <div>
                     <div className="flex gap-0.5 text-yellow-500">
                       {Array.from({ length: 5 }).map((_, idx) => (
