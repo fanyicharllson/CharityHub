@@ -114,12 +114,12 @@ export default function Header() {
                 </li>
                 <li>
                   <a className="header-link" href="/contact">
-                    Contact Us
+                    Contact
                   </a>
                 </li>
                 <li>
                   <Link className="header-link" href="/about">
-                    About Us
+                    About 
                   </Link>
                 </li>
               </ul>
@@ -246,12 +246,12 @@ export default function Header() {
               </li>
               <li>
                 <Link className="mobile-hover" href="/contact">
-                  Contact Us
+                  Contact 
                 </Link>
               </li>
               <li>
                 <Link className="mobile-hover" href="/about">
-                  About Us
+                  About 
                 </Link>
               </li>
               <div className="bg-teal-700 cursor-pointer rounded py-2 px-2">

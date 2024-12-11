@@ -101,9 +101,9 @@ const Footer = () => {
           </div>
 
           {/* Contact Section */}
-          <div className="mt-4 text-center text-gray-400 lg:text-left">
+          {/* <div className="mt-4 text-center text-gray-400 lg:text-left">
             <p className="text-lg font-semibold text-white">Contact Us</p>
-            {/* <div className="flex justify-center gap-4 mt-3 lg:justify-start">
+            <div className="flex justify-center gap-4 mt-3 lg:justify-start">
               <a
                 href="tel:+1234567890"
                 className="flex items-center gap-2 text-gray-400 hover:text-gray-300"
@@ -118,8 +118,8 @@ const Footer = () => {
                 </svg>
                 <span>+1 (234) 567-890</span>
               </a>
-            </div> */}
-          </div>
+            </div>
+          </div> */}
         </div>
         <div className="container mx-auto text-center">
           <p className="text-sm font-light">
