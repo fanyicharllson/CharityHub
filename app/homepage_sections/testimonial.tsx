@@ -74,7 +74,7 @@ export default function Home() {
           </h4>
         </div>
         <div className="max-w-7xl items-end justify-between sm:flex sm:pe-6 lg:pe-8">
-          <h2 className="h2-title text-gray-900">
+          <h2 className="h2-title">
             Transforming Lives Through <br></br> Your Generosity
           </h2>
           <div className="mt-8 flex gap-4 lg:mt-0">

@@ -3,48 +3,45 @@
 @tailwind utilities;
 
 * {
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    text-decoration: none;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  text-decoration: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 body {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 /*Components.css */
 @layer components {
-    /* Navigation link */
-.header-link {
+  /* Navigation link */
+  .header-link {
     @apply text-gray-800  transition hover:text-teal-600;
-}
+  }
 
-/*  header-dropdown styling */
-.header-dropdown {
+  /*  header-dropdown styling */
+  .header-dropdown {
     @apply block px-4 py-2 text-sm text-gray-500 hover:bg-teal-50 hover:text-teal-600;
-}
+  }
 
-
-/* Mobile header-styling */
-.mobile-hover {
+  /* Mobile header-styling */
+  .mobile-hover {
     @apply block  text-gray-500 hover:bg-teal-50 hover:text-teal-600 transition py-2 px-2 rounded-md;
-}
+  }
 
-/* Card */
-.card {
+  /* Card */
+  .card {
     @apply h-64 rounded-lg bg-white shadow-lg;
-}
-
+  }
 }
 
 @layer utilities {
-    .link-btn {
-        @apply bg-teal-600 focus:outline-none rounded focus:ring active:bg-teal-500 px-12 py-3 text-white hover:bg-teal-700;
-    }
-    .h2-title {
-        @apply text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl;
-    }
+  .link-btn {
+    @apply bg-teal-600 focus:outline-none rounded focus:ring active:bg-teal-500 px-12 py-3 text-white hover:bg-teal-700;
+  }
+  .h2-title {
+    @apply text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl;
+  }
 }
-
