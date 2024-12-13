@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   images: {
-    domains: ['images.unsplash.com'], // Add other domains if needed
+    domains: ['qbfyfenofkxhkgzanjlu.supabase.co'], 
   }, 
 };
 

@@ -31,6 +31,7 @@ const CauseCard: React.FC<{ title: string; description: string; image: string; g
           className="h-56 w-full object-cover"
           width={224}
           height={224}
+          priority 
         />
   
         <div className="p-6">
