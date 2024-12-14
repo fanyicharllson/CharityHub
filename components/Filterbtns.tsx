@@ -1,13 +1,35 @@
+"use client";
 
+// import { useState } from "react";
 
-const Filterbtns = () => {
-  return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        <button className="bg-white shadow-md">
-
-        </button>
-    </div>
-  )
+interface FilterBtnsProps {
+  filters: string[];
+  activeFilter: string;
+  onFilterClick: (filter: string) => void;
 }
 
-export default Filterbtns
+const FilterBtns: React.FC<FilterBtnsProps> = ({
+  filters,
+  activeFilter,
+  onFilterClick,
+}) => {
+  return (
+    <div className="flex flex-wrap justify-center gap-4 py-4">
+      {filters.map((filter, index) => (
+        <button
+          key={index}
+          className={`py-2 px-4 rounded-lg shadow-md text-sm font-medium transition-colors duration-200 cursor-pointer ${
+            activeFilter === filter
+              ? "bg-teal-500 text-white"
+              : "bg-gray-100 hover:bg-gray-200"
+          }`}
+          onClick={() => onFilterClick(filter)}
+        >
+          {filter}
+        </button>
+      ))}
+    </div>
+  );
+};
+
+export default FilterBtns;
