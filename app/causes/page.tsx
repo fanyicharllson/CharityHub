@@ -103,6 +103,7 @@ const AllCauses = () => {
                   alt={cause.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-110 cursor-pointer"
+                  priority
                 />
 
                 {/* Overlay */}
