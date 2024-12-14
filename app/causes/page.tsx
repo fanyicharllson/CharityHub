@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
 import FilterBtns from "@/components/Filterbtns";
 import Image from "next/image";
+import Link from 'next/link';
+
 
 interface Cause {
   id: number;
@@ -65,9 +67,9 @@ const AllCauses = () => {
       <section className="relative z-10 mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex justify-center items-center gap-2 text-center pb-4">
           <div className="bg-teal-500 w-12 h-[3px] flex flex-col justify-center items-center text-center"></div>
-          <h4 className="text-teal-500 font-bold">Latest Causes</h4>
+          <h4 className="text-teal-500 font-bold">Causes</h4>
         </div>
-        <h2 className="h2-title text-center">Explore All Causes</h2>
+        <h2 className="h2-title text-center">Explore All Causes <br></br> and Donate them</h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-gray-600">
           Filter through our impactful causes and find one that resonates with
           you.
@@ -111,7 +113,9 @@ const AllCauses = () => {
 
                 {/* Text Overlay */}
                 <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <Link href="/donate">
                   <h3 className="font-bold text-lg">{cause.title}</h3>
+                  </Link>
                   <p className="text-sm">{cause.category}</p>
                   <div className="mt-2">
                     <div className="text-xs text-gray-300">

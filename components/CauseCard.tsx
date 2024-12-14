@@ -5,6 +5,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useEffect } from 'react';
 import CountUp from 'react-countup';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const CauseCard: React.FC<{ title: string; description: string; image: string; goal: number; raised: number }> = ({ title, description, image, goal, raised }) => {
     const percentage = Math.min((raised / goal) * 100, 100); // Ensure it doesn't exceed 100
@@ -62,12 +63,12 @@ const CauseCard: React.FC<{ title: string; description: string; image: string; g
             </p>
           </div>
   
-          <a
-            href="#"
+          <Link
+            href="/donate"
             className="mt-6 inline-block w-full rounded-md bg-teal-600 px-4 py-2 text-center text-sm font-medium text-white hover:bg-teal-700"
           >
             Donate Now
-          </a>
+          </Link>
         </div>
       </motion.article>
     );
