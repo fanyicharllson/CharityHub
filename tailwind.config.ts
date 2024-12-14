@@ -12,6 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      animation: {
+        fadeIn: "fadeIn 1s ease-in-out",
+        fadeInDelay: "fadeIn 1.5s ease-in-out",
+        fadeInDelay2: "fadeIn 2s ease-in-out",
+        bounce: "bounce 2s infinite",
+      },
     },
   },
   plugins: [],

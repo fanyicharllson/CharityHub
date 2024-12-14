@@ -113,7 +113,7 @@ const AllCauses = () => {
 
                 {/* Text Overlay */}
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <Link href="/donate">
+                  <Link href={`/donate/${cause.id}`}>
                   <h3 className="font-bold text-lg">{cause.title}</h3>
                   </Link>
                   <p className="text-sm">{cause.category}</p>
