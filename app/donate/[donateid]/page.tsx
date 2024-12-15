@@ -7,7 +7,7 @@ import Image from "next/image";
 import NotFoundPageCustom from "@/app/notfoundpage_custom/page";
 import SkeletonLoader from "@/components/skeletonLoader";
 
-import Card from "@/public/assets/icons/card.png";
+import Card from "@/public/assets/icons/card .png";
 import Paypal from "@/public/assets/icons/paypal.png";
 import Visa from "@/public/assets/icons/visa.png";
 
@@ -19,11 +19,49 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
 
   const [amount, setAmount] = useState<number | string>("");
   const [paymentMethod, setPaymentMethod] = useState<string>("");
+  const [currency, setCurrency] = useState<string>("USD");
+  const [convertedAmount, setConvertedAmount] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Fetch conversion rates
+  useEffect(() => {
+    const fetchConversion = async () => {
+      if (amount && currency !== "USD") {
+        try {
+          const response = await fetch(
+            `https://api.exchangerate-api.com/v4/latest/USD`
+          );
+          const rates = await response.json();
+          setConvertedAmount(
+            (Number(amount) * rates.rates[currency]).toFixed(2)
+          );
+        } catch (error) {
+          console.error("Error fetching conversion rates:", error);
+        }
+      } else {
+        setConvertedAmount("");
+      }
+    };
+    fetchConversion();
+  }, [amount, currency]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle payment submission logic here
-    alert(`Thank you for donating $${amount}!`);
+
+    if (!paymentMethod) {
+      alert("Please select a payment method.");
+      return;
+    }
+
+    const donationData = {
+      amount,
+      paymentMethod,
+      currency,
+    };
+
+    console.log("Submitting Donation Data:", donationData);
+
+    // API call logic here
+    alert(`Thank you for donating ${amount} ${currency}!`);
   };
 
   useEffect(() => {
@@ -82,8 +120,14 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
             {/* {cause.title} */}
           </div>
         </section>
-        <div className="max-w-screen-lg mx-auto py-32 px-4">
-          <SkeletonLoader />
+        <div className="py-32 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {Array(2)
+              .fill(0)
+              .map((_, index) => (
+                <SkeletonLoader key={index} />
+              ))}
+          </div>
         </div>
       </>
     );
@@ -133,21 +177,47 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
                 viewport={{ once: true }}
-                className="pt-10"
-                
-
               >
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                  Support Cause
-                </h2>
-                <form onSubmit={handleSubmit} className="space-y-4 relative z-20">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4 relative z-20"
+                >
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-gray-600 text-sm mb-2"
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
+                      required
+                    />
+                  </div>
+                  {/* Dynamic Donation Suggestions */}
+                  <div className="flex space-x-4  flex-wrap gap-y-4">
+                    {[10, 50, 100, 200, 500].map((amountValue) => (
+                      <button
+                        key={amountValue}
+                        type="button"
+                        className="px-4 py-2 bg-teal-100 text-teal-600 font-medium rounded-md hover:bg-teal-200"
+                        onClick={() => setAmount(amountValue.toString())}
+                      >
+                        ${amountValue}
+                      </button>
+                    ))}
+                  </div>
+
                   {/* Donation Amount */}
                   <div>
                     <label
                       htmlFor="amount"
                       className="block text-gray-600 text-sm mb-2"
                     >
-                      Donation Amount (USD)
+                      Donation Amount ({currency})
                     </label>
                     <input
                       id="amount"
@@ -158,6 +228,32 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
                       required
                     />
+                    {convertedAmount && (
+                      <p className="text-sm text-gray-600 mt-1">
+                        Approx. {convertedAmount} {currency}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Currency Selector */}
+                  <div>
+                    <label
+                      htmlFor="currency"
+                      className="block text-gray-600 text-sm mb-2"
+                    >
+                      Select Currency
+                    </label>
+                    <select
+                      id="currency"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                      value={currency}
+                      onChange={(e) => setCurrency(e.target.value)}
+                    >
+                      <option value="USD">USD - US Dollar</option>
+                      <option value="EUR">EUR - Euro</option>
+                      <option value="GBP">GBP - British Pound</option>
+                      <option value="INR">INR - Indian Rupee</option>
+                    </select>
                   </div>
 
                   {/* Payment Method */}
@@ -171,7 +267,7 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                     <div className="flex space-x-4 items-center">
                       <button
                         type="button"
-                        className={`flex items-center px-4 py-2 border rounded-lg ${
+                        className={`flex items-center px-6 border rounded-lg ${
                           paymentMethod === "paypal"
                             ? "border-blue-700 bg-blue-50"
                             : "border-gray-300"
@@ -181,14 +277,14 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                         <Image
                           src={Paypal}
                           alt="PayPal"
-                          className="h-6 object-cover"
-                          width={100}
-                          height={50}
+                          className="object-cover"
+                          height={35}
+                          priority
                         />
                       </button>
                       <button
                         type="button"
-                        className={`flex items-center px-4 py-2 border rounded-lg ${
+                        className={`flex items-center px-6 border rounded-lg ${
                           paymentMethod === "visa"
                             ? "border-blue-700 bg-blue-100"
                             : "border-gray-300"
@@ -198,14 +294,14 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                         <Image
                           src={Visa}
                           alt="Visa"
-                          className="h-6 object-cover"
-                          width={100}
-                          height={50}
+                          className="object-cover"
+                          height={35}
+                          priority
                         />
                       </button>
                       <button
                         type="button"
-                        className={`flex items-center px-4 py-2 border rounded-lg ${
+                        className={`flex items-center px-6 border rounded-lg ${
                           paymentMethod === "mastercard"
                             ? "border-blue-700 bg-blue-50"
                             : "border-gray-300"
@@ -215,12 +311,22 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                         <Image
                           src={Card}
                           alt="MasterCard"
-                          className="h-6 object-fill"
-                          width={100}
-                          height={50}
+                          className="object-cover"
+                          height={35}
                         />
                       </button>
                     </div>
+                  </div>
+                  {/* Tax Receipt Checkbox */}
+                  <div className="flex items-center">
+                    <input
+                      id="tax-receipt"
+                      type="checkbox"
+                      className="h-4 w-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500"
+                    />
+                    <label htmlFor="tax-receipt" className="ml-2 text-gray-700">
+                      Send me a tax receipt for this donation
+                    </label>
                   </div>
 
                   {/* Submit Button */}
