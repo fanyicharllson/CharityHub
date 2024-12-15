@@ -1,7 +1,74 @@
-// pages/volunteer.tsx
+"use client";
+
 import React from "react";
+import { useState } from "react";
+import { supabase } from "@/utils/supabaseClient";
+import { motion } from "framer-motion";
 
 const VolunteerSection: React.FC = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    dateOfBirth: "",
+    availability: "",
+    message: "",
+  });
+  const [notification, setNotification] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { fullName, email, phone, dateOfBirth, availability, message } =
+      formData;
+
+    try {
+      const { error } = await supabase.from("charity_voluntiers").insert([
+        {
+          full_name: fullName,
+          email,
+          phone,
+          date_of_birth: dateOfBirth,
+          availability,
+          message,
+        },
+      ]);
+
+      if (error) {
+        throw error;
+      }
+
+      setNotification({
+        type: "success",
+        message: "Thank you! Your information has been submitted successfully.",
+      });
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        dateOfBirth: "",
+        availability: "",
+        message: "",
+      });
+    } catch (error) {
+      setNotification({
+        type: "error",
+        message:
+          "An error occurred while submitting your information. Please try again.",
+      });
+    }
+  };
+
   return (
     <section className="bg-gray-100 py-16 px-6 sm:px-12">
       <div className="flex justify-center items-center gap-2 text-center pb-4">
@@ -9,7 +76,7 @@ const VolunteerSection: React.FC = () => {
         <h4 className="text-teal-500 font-bold">Become a Volunteer</h4>
       </div>
       <h2 className="h2-title text-center pb-12">
-      Together We Can Make <br></br> A Difference
+        Together We Can Make <br></br> A Difference
       </h2>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left Text Section */}
@@ -35,18 +102,20 @@ const VolunteerSection: React.FC = () => {
 
         {/* Right Form Section */}
         <div className="bg-white shadow-md rounded-md p-8">
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label
-                htmlFor="name"
+                htmlFor="fullName"
                 className="block text-sm font-medium text-gray-700"
               >
                 Full Name
               </label>
               <input
                 type="text"
-                id="name"
+                id="fullName"
                 placeholder="Enter your name"
+                value={formData.fullName}
+                onChange={handleChange}
                 required
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
               />
@@ -63,7 +132,10 @@ const VolunteerSection: React.FC = () => {
                 type="email"
                 id="email"
                 placeholder="Enter your email"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-teak-500 focus:border-teal-500"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
 
@@ -78,20 +150,25 @@ const VolunteerSection: React.FC = () => {
                 type="tel"
                 id="phone"
                 placeholder="Enter your phone number"
+                value={formData.phone}
+                onChange={handleChange}
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
+
             <div>
               <label
-                htmlFor="date-of-birth"
+                htmlFor="dateOfBirth"
                 className="block text-sm font-medium text-gray-700"
               >
                 Date of Birth
               </label>
               <input
                 type="date"
-                id="date-of-birth"
-                placeholder="Enter your date of birth"
+                id="dateOfBirth"
+                value={formData.dateOfBirth}
+                onChange={handleChange}
+                required
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
@@ -105,6 +182,9 @@ const VolunteerSection: React.FC = () => {
               </label>
               <select
                 id="availability"
+                value={formData.availability}
+                onChange={handleChange}
+                required
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
               >
                 <option value="">Select</option>
@@ -125,6 +205,8 @@ const VolunteerSection: React.FC = () => {
                 id="message"
                 rows={4}
                 placeholder="Any additional details..."
+                value={formData.message}
+                onChange={handleChange}
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
               ></textarea>
             </div>
@@ -135,6 +217,20 @@ const VolunteerSection: React.FC = () => {
             >
               Submit
             </button>
+            {notification.type && (
+            <motion.div
+              className={`mb-4 p-3 mt-4 rounded-md ${
+                notification.type === "success"
+                  ? "bg-green-100 text-green-700"
+                  : "bg-red-100 text-red-700"
+              }`}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+            >
+              {notification.message}
+            </motion.div>
+          )}
           </form>
         </div>
       </div>
