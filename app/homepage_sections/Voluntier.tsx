@@ -50,7 +50,8 @@ const VolunteerSection: React.FC = () => {
 
       setNotification({
         type: "success",
-        message: "Thank you! Your information has been submitted successfully.",
+        message:
+          "Thank you! Your information has been submitted successfully, we will get back you shortly.",
       });
       setFormData({
         fullName: "",
@@ -218,19 +219,19 @@ const VolunteerSection: React.FC = () => {
               Submit
             </button>
             {notification.type && (
-            <motion.div
-              className={`mb-4 p-3 mt-4 rounded-md ${
-                notification.type === "success"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-red-100 text-red-700"
-              }`}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-            >
-              {notification.message}
-            </motion.div>
-          )}
+              <motion.div
+                className={`mb-4 p-3 mt-4 rounded-md ${
+                  notification.type === "success"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-700"
+                }`}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+              >
+                {notification.message}
+              </motion.div>
+            )}
           </form>
         </div>
       </div>
