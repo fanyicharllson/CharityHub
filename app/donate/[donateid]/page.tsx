@@ -7,11 +7,24 @@ import Image from "next/image";
 import NotFoundPageCustom from "@/app/notfoundpage_custom/page";
 import SkeletonLoader from "@/components/skeletonLoader";
 
+import Card from "@/public/assets/icons/card.png";
+import Paypal from "@/public/assets/icons/paypal.png";
+import Visa from "@/public/assets/icons/visa.png";
+
 const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
   const [cause, setCause] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [donateid, setDonateid] = useState<string | null>(null);
+
+  const [amount, setAmount] = useState<number | string>("");
+  const [paymentMethod, setPaymentMethod] = useState<string>("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle payment submission logic here
+    alert(`Thank you for donating $${amount}!`);
+  };
 
   useEffect(() => {
     const fetchParams = async () => {
@@ -88,9 +101,9 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
               {cause.title}
             </div>
           </section>
-          <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+          <section className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <motion.div
-              className="grid grid-cols-1 gap-8 lg:grid-cols-2 md:items-center"
+              className="grid grid-cols-1 gap-8 lg:grid-cols-2 "
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -110,24 +123,117 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                   className="rounded-lg"
                   priority
                 />
+
+                <h2 className="h2-title mb-4 mt-4">{cause.title}</h2>
+                <p className="text-gray-600 mb-4">{cause.category}</p>
+                <p className="mt-6 text-lg">{cause.description}</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
                 viewport={{ once: true }}
+                className="pt-10"
+                
+
               >
-                <h2 className="h2-title mb-4">{cause.title}</h2>
-                <p className="text-gray-600 mb-4">{cause.category}</p>
-                <p className="mt-6 text-lg">{cause.description}</p>
-                <div className="mt-10">
-                  <button className="bg-teal-500 text-white py-3 px-6 rounded-md shadow-md">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                  Support Cause
+                </h2>
+                <form onSubmit={handleSubmit} className="space-y-4 relative z-20">
+                  {/* Donation Amount */}
+                  <div>
+                    <label
+                      htmlFor="amount"
+                      className="block text-gray-600 text-sm mb-2"
+                    >
+                      Donation Amount (USD)
+                    </label>
+                    <input
+                      id="amount"
+                      type="number"
+                      placeholder="Enter amount"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
+                      required
+                    />
+                  </div>
+
+                  {/* Payment Method */}
+                  <div>
+                    <label
+                      htmlFor="payment-method"
+                      className="block text-gray-600 text-sm mb-2"
+                    >
+                      Select Payment Method
+                    </label>
+                    <div className="flex space-x-4 items-center">
+                      <button
+                        type="button"
+                        className={`flex items-center px-4 py-2 border rounded-lg ${
+                          paymentMethod === "paypal"
+                            ? "border-blue-700 bg-blue-50"
+                            : "border-gray-300"
+                        } hover:bg-gray-100`}
+                        onClick={() => setPaymentMethod("paypal")}
+                      >
+                        <Image
+                          src={Paypal}
+                          alt="PayPal"
+                          className="h-6 object-cover"
+                          width={100}
+                          height={50}
+                        />
+                      </button>
+                      <button
+                        type="button"
+                        className={`flex items-center px-4 py-2 border rounded-lg ${
+                          paymentMethod === "visa"
+                            ? "border-blue-700 bg-blue-100"
+                            : "border-gray-300"
+                        } hover:bg-gray-100`}
+                        onClick={() => setPaymentMethod("visa")}
+                      >
+                        <Image
+                          src={Visa}
+                          alt="Visa"
+                          className="h-6 object-cover"
+                          width={100}
+                          height={50}
+                        />
+                      </button>
+                      <button
+                        type="button"
+                        className={`flex items-center px-4 py-2 border rounded-lg ${
+                          paymentMethod === "mastercard"
+                            ? "border-blue-700 bg-blue-50"
+                            : "border-gray-300"
+                        } hover:bg-gray-100`}
+                        onClick={() => setPaymentMethod("mastercard")}
+                      >
+                        <Image
+                          src={Card}
+                          alt="MasterCard"
+                          className="h-6 object-fill"
+                          width={100}
+                          height={50}
+                        />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="w-full py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 transition"
+                  >
                     Donate Now
                   </button>
-                </div>
+                </form>
               </motion.div>
             </motion.div>
-          </div>
+          </section>
         </>
       )}
     </>
