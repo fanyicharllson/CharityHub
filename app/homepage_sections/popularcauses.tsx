@@ -94,6 +94,7 @@ const PopularCauses = () => {
         {causes.map((cause: any, index: number) => (
           <CauseCard
             key={index}
+            causeId={cause.id}
             title={cause.title}
             description={cause.description}
             image={cause.image_url}

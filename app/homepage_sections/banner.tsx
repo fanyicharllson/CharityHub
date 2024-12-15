@@ -102,7 +102,7 @@ const Banner = () => {
               transition={{ duration: 1, delay: 1.2 }}
             >
               <Link
-                href="#"
+                href="/about"
                 className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-teal-600 shadow hover:text-teal-700 focus:outline-none focus:ring active:text-teal-500 sm:w-auto"
               >
                 Learn More

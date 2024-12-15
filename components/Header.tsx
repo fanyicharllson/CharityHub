@@ -142,7 +142,7 @@ export default function Header() {
               </Link>
               <Link
                 className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow transition hover:bg-teal-700"
-                href="/donate"
+                href="/causes"
               >
                 Donate
               </Link>
@@ -273,7 +273,7 @@ export default function Header() {
               </li>
               <div className="bg-teal-700 cursor-pointer rounded py-2 px-2">
                 <li>
-                  <Link className=" text-white" href="/donate"
+                  <Link className=" text-white" href="/causes"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 
                   >
