@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { supabase } from "@/utils/supabaseClient";
 import Image from "next/image";
 import NotFoundPageCustom from "@/app/notfoundpage_custom/page";
@@ -61,48 +62,74 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
 
   if (loading) {
     return (
-      <div className="max-w-screen-lg mx-auto py-32 px-4">
-        <SkeletonLoader />
-      </div>
+      <>
+        <section className="relative bg-[url(/assets/images/savelife.jpg)] py-16 bg-cover bg-center bg-no-repeat h-[300px] md:h-[400px]">
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-transparent"></div>
+          <div className="relative mx-auto max-w-screen-2xl px-4 py-28 sm:px-6 lg:flex lg:h-screen lg:px-8 text-white text-5xl font-bold max-md:text-3xl capitalize">
+            {/* {cause.title} */}
+          </div>
+        </section>
+        <div className="max-w-screen-lg mx-auto py-32 px-4">
+          <SkeletonLoader />
+        </div>
+      </>
     );
   }
 
   return (
     <>
-      <section className="relative bg-[url(/assets/images/savelife.jpg)] py-16 bg-cover bg-center bg-no-repeat h-[300px] md:h-[400px]">
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-transparent"></div>
-        <div className="relative mx-auto max-w-screen-2xl px-4 py-28 sm:px-6 lg:flex lg:h-screen lg:px-8 text-white text-5xl font-bold max-md:text-3xl capitalize">
-          {cause.title}
-        </div>
-      </section>
-      <section className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        {error ? (
-          <NotFoundPageCustom />
-        ) : (
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 md:items-center">
-            <div>
-              <Image
-                src={cause.image_url}
-                alt={cause.title}
-                width={800}
-                height={400}
-                className="rounded-lg"
-                priority
-              />
+      {error ? (
+        <NotFoundPageCustom />
+      ) : (
+        <>
+          <section className="relative bg-[url(/assets/images/savelife.jpg)] py-16 bg-cover bg-center bg-no-repeat h-[300px] md:h-[400px]">
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-transparent"></div>
+            <div className="relative mx-auto max-w-screen-2xl px-4 py-28 sm:px-6 lg:flex lg:h-screen lg:px-8 text-white text-5xl font-bold max-md:text-3xl capitalize">
+              {cause.title}
             </div>
-            <div>
-              <h1 className="text-4xl font-bold mb-4">{cause.title}</h1>
-              <p className="text-gray-600 mb-4">{cause.category}</p>
-              <p className="mt-6 text-lg">{cause.description}</p>
-              <div className="mt-10">
-                <button className="bg-teal-500 text-white py-3 px-6 rounded-md shadow-md">
-                  Donate Now
-                </button>
-              </div>
-            </div>
+          </section>
+          <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+            <motion.div
+              className="grid grid-cols-1 gap-8 lg:grid-cols-2 md:items-center"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Image
+                  src={cause.image_url}
+                  alt={cause.title}
+                  width={800}
+                  height={400}
+                  className="rounded-lg"
+                  priority
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="h2-title mb-4">{cause.title}</h2>
+                <p className="text-gray-600 mb-4">{cause.category}</p>
+                <p className="mt-6 text-lg">{cause.description}</p>
+                <div className="mt-10">
+                  <button className="bg-teal-500 text-white py-3 px-6 rounded-md shadow-md">
+                    Donate Now
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
-        )}
-      </section>
+        </>
+      )}
     </>
   );
 };

@@ -136,7 +136,7 @@ export default function Header() {
             <div className="hidden sm:flex sm:gap-4">
               <Link
                 className="rounded-md bg-gray-300 px-5 py-2.5 text-sm font-medium text-teal-600 shadow transition hover:bg-gray-200"
-                href="#"
+                href="/login"
               >
                 Login
               </Link>
@@ -228,7 +228,9 @@ export default function Header() {
                 {isDropdownOpen && (
                   <ul className="pl-4 space-y-2">
                     <li>
-                      <Link className="mobile-hover" href="/causes">
+                      <Link className="mobile-hover" href="/causes"
+                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                      >
                         All Causes
                       </Link>
                     </li>
