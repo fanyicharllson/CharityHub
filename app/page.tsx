@@ -23,11 +23,10 @@ const Home = () => {
         return;
       }
 
-      // If the user is not logged in and hasn't visited before, show the popup
       const hasVisited = localStorage.getItem("hasVisited");
       if (!hasVisited) {
         setShowPopup(true);
-        localStorage.setItem("hasVisited", "true"); // Mark the user as visited
+        localStorage.setItem("hasVisited", "true"); 
       }
     };
 
