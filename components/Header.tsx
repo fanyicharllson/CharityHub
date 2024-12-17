@@ -51,7 +51,7 @@ export default function Header() {
           {/* Navigation Links */}
           <div className="hidden md:block">
             <nav aria-label="Global">
-              <ul className="flex items-center gap-6 text-sm">
+              <ul className="flex items-center gap-6 max-lg:gap-2 text-sm">
                 <li>
                   <Link className="header-link" href="/">
                     Home
@@ -114,7 +114,7 @@ export default function Header() {
 
                 <li>
                   <Link className="header-link" href="#">
-                    Testimonials
+                    Events
                   </Link>
                 </li>
                 <li>
@@ -124,7 +124,7 @@ export default function Header() {
                 </li>
                 <li>
                   <Link className="header-link" href="/about">
-                    About 
+                    About
                   </Link>
                 </li>
               </ul>
@@ -134,6 +134,12 @@ export default function Header() {
           {/* Buttons and Mobile Menu */}
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex sm:gap-4">
+              <Link
+                className="rounded-md bg-gray-300 px-5 py-2.5 text-sm font-medium text-teal-600 shadow transition hover:bg-gray-200"
+                href="/signup"
+              >
+                Sign Up
+              </Link>
               <Link
                 className="rounded-md bg-gray-300 px-5 py-2.5 text-sm font-medium text-teal-600 shadow transition hover:bg-gray-200"
                 href="/signin"
@@ -195,12 +201,15 @@ export default function Header() {
           <nav className="md:hidden mt-2 mb-2">
             <ul className="space-y-2 text-sm">
               <li>
-                <Link className="mobile-hover"  href="/"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                <Link
+                  className="mobile-hover"
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
                   Home
                 </Link>
               </li>
-              
+
               <li className="relative">
                 {/* Mobile Dropdown */}
                 <button
@@ -228,8 +237,10 @@ export default function Header() {
                 {isDropdownOpen && (
                   <ul className="pl-4 space-y-2">
                     <li>
-                      <Link className="mobile-hover" href="/causes"
-                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                      <Link
+                        className="mobile-hover"
+                        href="/causes"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                       >
                         All Causes
                       </Link>
@@ -253,31 +264,38 @@ export default function Header() {
                 )}
               </li>
               <li>
-                <Link className="mobile-hover" href="#"
+                <Link
+                  className="mobile-hover"
+                  href="#"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                   Testimonial
                 </Link>
               </li>
               <li>
-                <Link className="mobile-hover" href="/contact"
+                <Link
+                  className="mobile-hover"
+                  href="/contact"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
-                  Contact 
+                  Contact
                 </Link>
               </li>
               <li>
-                <Link className="mobile-hover" href="/about"
+                <Link
+                  className="mobile-hover"
+                  href="/about"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
-                  About 
+                  About
                 </Link>
               </li>
               <div className="bg-teal-700 cursor-pointer rounded py-2 px-2">
                 <li>
-                  <Link className=" text-white" href="/causes"
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-
+                  <Link
+                    className=" text-white"
+                    href="/causes"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   >
                     Donate
                   </Link>
@@ -285,8 +303,10 @@ export default function Header() {
               </div>
               <div className="bg-gray-100 cursor-pointer rounded py-2 px-2">
                 <li>
-                  <Link className=" text-teal-600" href="/signin"
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  <Link
+                    className=" text-teal-600"
+                    href="/signin"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   >
                     Login
                   </Link>
