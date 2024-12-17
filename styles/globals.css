@@ -62,5 +62,20 @@ body {
   animation: fade-in 0.5s ease-out forwards;
 }
 
+.circular-progress {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--tw-text-opacity, 1) currentColor var(--percentage, 0%) calc(var(--percentage, 0%) + 0.1%),
+    #e2e8f0 calc(var(--percentage, 0%) + 0.1%)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
 

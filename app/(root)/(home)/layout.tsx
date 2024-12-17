@@ -12,7 +12,7 @@ export const metadata = {
 const Rootlayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="en">
-      <body>
+      <body className="flex flex-col">
          <Header/>
         <main>
           {children}
