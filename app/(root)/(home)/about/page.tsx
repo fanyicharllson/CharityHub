@@ -4,6 +4,10 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import Savelife from "@/public/assets/images/faqimage.avif";
 import { useRef, useState, useEffect } from "react";
+import VoluntierCard from "@/components/aboutpagecomponents/voluntiercard";
+import Voluntier4 from "@/public/assets/images/voluntier4.webp";
+import Voluntier5 from "@/public/assets/images/voluntier5.webp";
+import Voluntier2 from "@/public/assets/images/voluntier2.jpeg";
 
 export default function AboutPage() {
   const [successfulCauses, setSuccessfulCauses] = useState(0);
@@ -56,6 +60,7 @@ export default function AboutPage() {
 
   return (
     <>
+      {/* About Banner section */}
       <section className="relative bg-[url(/assets/images/savelife.jpg)] py-16 bg-cover bg-center bg-no-repeat h-[300px] md:h-[400px]">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-transparent"></div>
         <div className="relative mx-auto max-w-screen-2xl px-4 py-28 sm:px-6 lg:flex lg:h-screen lg:px-8 text-white text-5xl font-bold max-md:text-3xl capitalize">
@@ -111,6 +116,34 @@ export default function AboutPage() {
               </div>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Recent voluntier section */}
+      <section className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="flex justify-center items-center gap-2 text-center pb-4">
+          <div className="bg-teal-500 w-12 h-[3px] flex flex-col justify-center items-center text-center"></div>
+          <h4 className="text-teal-500 font-bold">Our Inspiring Volunteers</h4>
+        </div>
+        <h2 className="h2-title text-center">
+          Meet Our Recent Voluntiers <br></br> that Change Lives
+        </h2>
+        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <VoluntierCard
+            heading="John Doe"
+            text="Contributed 50 hours of teaching in underprivileged schools."
+            image={Voluntier4}
+          />
+          <VoluntierCard
+            heading="Jane Smith"
+            text="Organized a health camp, assisting 200+ families with medical aid."
+            image={Voluntier5}
+          />
+          <VoluntierCard
+            heading="Sam Lee"
+            text="Helped construct sustainable homes for displaced communities."
+            image={Voluntier2}
+          />
         </div>
       </section>
     </>
