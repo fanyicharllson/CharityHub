@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { supabase } from "@/utils/supabaseClient";
 import Image from "next/image";
-import NotFoundPageCustom from "@/app/notfoundpage_custom/page";
+import NotFoundPageCustom from "@/app/(notfound)/notfoundpage/page";
 import SkeletonLoader from "@/components/skeletonLoader";
 
 import Card from "@/public/assets/icons/card .png";
@@ -332,6 +332,7 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                   {/* Submit Button */}
                   <button
                     type="submit"
+                    disabled
                     className="w-full py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 transition"
                   >
                     Donate Now
