@@ -23,7 +23,7 @@ const VerifyEmailPage = () => {
       console.log("Email:", email);
 
       if (!token || !email || type !== "signup") {
-        setMessage("Invalid or expired verification link. Please try again.");
+        setMessage("An Error occured while Verifying your email! Please try this later.");//Invalid or expired verification link. Please try again.
         setLoading(false);
         return;
       }
@@ -67,7 +67,7 @@ const VerifyEmailPage = () => {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-500">
             If you didn’t receive the email, check your spam folder or{" "}
-            <Link href="/resend-email" className="text-blue-500 hover:underline">
+            <Link href="#" className="text-blue-500 hover:underline">
               request a new verification link
             </Link>.
           </p>
@@ -76,7 +76,7 @@ const VerifyEmailPage = () => {
               href="/"
               className="text-blue-600 hover:underline text-lg"
             >
-              Go to Home
+              Return to Home
             </Link>
           </div>
         </div>

@@ -34,7 +34,7 @@ const SignIn = () => {
       }
     } else if (res?.ok) {
       // Redirect to home page on successful login
-      router.push("/");
+      router.push("/info");
     }
   };
 
