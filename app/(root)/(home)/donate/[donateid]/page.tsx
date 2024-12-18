@@ -11,6 +11,9 @@ import Card from "@/public/assets/icons/card .png";
 import Paypal from "@/public/assets/icons/paypal.png";
 import Visa from "@/public/assets/icons/visa.png";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
   const [cause, setCause] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -44,31 +47,83 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
     fetchConversion();
   }, [amount, currency]);
 
-
-
-  
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validate payment method
     if (!paymentMethod) {
-      alert("Please select a payment method.");
+      toast.error("Please select a payment method.");
+      console.log("No payment method selected.");
       return;
     }
 
-    const donationData = {
-      amount,
-      paymentMethod,
-      currency,
-    };
+    // Validate donation amount
+    if (!amount) {
+      toast.error("Please enter a donation amount.");
+      console.log("No donation amount entered.");
+      return;
+    }
 
-    console.log("Submitting Donation Data:", donationData);
+    // Check if user is logged in
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    console.log("Session data:", session);
 
-    // API call logic here
-    alert(`Thank you for donating ${amount} ${currency}!`);
+    if (session) {
+      // If user is logged in, proceed with donation
+      const { user } = session;
+
+      console.log("Logged in user:", user);
+
+      // Ensure causeId is available (you need to make sure 'donateid' is set)
+      if (!donateid) {
+        toast.error("Please select a cause to donate to.");
+        console.log("No cause selected.");
+        return;
+      }
+
+      // Insert donation data into the database
+      try {
+        console.log("Inserting donation:", {
+          user_id: user.id,
+          cause_id: donateid,
+          amount: amount,
+          currency: currency,
+          payment_method: paymentMethod,
+        });
+
+        const { error } = await supabase.from("donations").insert([
+          {
+            user_id: user.id,
+            cause_id: donateid, // Make sure 'donateid' is defined and passed
+            amount: amount,
+            currency: currency,
+            payment_method: paymentMethod,
+          },
+        ]);
+
+        if (error) {
+          throw new Error(error.message);
+        }
+
+        toast.success(
+          `Thank you for your donation of ${amount} ${currency}! Your donation has been tracked.`
+        );
+        console.log("Donation successfully saved in the database.");
+
+        // Optionally, redirect to a thank you page
+        // history.push("/thank-you"); // If using React Router, for example
+      } catch (error) {
+        toast.error("Something went wrong. Please try again.");
+        console.error("Error inserting donation:", error);
+      }
+    } else {
+      // If the user is not logged in, prompt them to create an account
+      toast.info("Please create an account to track your donation.");
+      console.log("User is not logged in.");
+    }
   };
-
-
 
   useEffect(() => {
     const fetchParams = async () => {
@@ -338,7 +393,6 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    disabled={!paymentMethod || !amount}
                     className="w-full py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 transition"
                   >
                     Donate Now

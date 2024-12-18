@@ -12,10 +12,11 @@ export async function POST(req: Request) {
       );
     }
 
+    // Manually generate the redirect URL without relying on template placeholders
     const redirectUrl =
       process.env.NODE_ENV === "production"
-        ? `https://${process.env.VERCEL_URL}/verify-email?email=${email}`
-        : `http://localhost:3000/verify-email?email=${email}`;
+        ? `https://${process.env.VERCEL_URL}/verify-email?email=${email}&type=signup`  // Send email with email query parameter for manual token handling
+        : `http://localhost:3000/verify-email?email=${email}&type=signup`;  // Same for local development
 
     console.log("Redirect URL:", redirectUrl);
 

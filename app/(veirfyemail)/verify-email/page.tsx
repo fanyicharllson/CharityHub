@@ -1,37 +1,39 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { supabase } from "@/utils/supabaseClient"; // Your supabase client
 import Link from "next/link";
 
-
 const VerifyEmailPage = () => {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [message, setMessage] = useState<string>("Verifying your email, please wait...");
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const verifyEmail = async () => {
-      const access_token = searchParams.get("token");
+      // Get the token and type from URL query params
+      const token = searchParams.get("token");
+      const type = searchParams.get("type");
       const email = searchParams.get("email");
 
       // Debug logging
-      console.log("Access Token:", access_token);
+      console.log("Token:", token);
+      console.log("Type:", type);
       console.log("Email:", email);
 
-      if (!access_token || !email) {
-        setMessage("Oops! It seems there's an issue with the verification link. Please try again later or request a new link."); //error here --------> Token null
+      if (!token || !email || type !== "signup") {
+        setMessage("Invalid or expired verification link. Please try again.");
         setLoading(false);
         return;
       }
 
       try {
+        // Verify the OTP with the token received in the URL
         const { error } = await supabase.auth.verifyOtp({
-          email: email as string,
-          token: access_token as string,
-          type: "signup",
+          email,   // Ensure the email is passed here
+          token,   // The token from the URL
+          type: "signup", // The type of verification
         });
 
         if (error) {
@@ -49,7 +51,7 @@ const VerifyEmailPage = () => {
     };
 
     verifyEmail();
-  }, [searchParams, router]);
+  }, [searchParams]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-blue-50">
@@ -69,13 +71,12 @@ const VerifyEmailPage = () => {
               request a new verification link
             </Link>.
           </p>
-            {/* New clickable link to navigate to the dashboard */}
           <div className="mt-6">
             <Link
-              href="/dashboard" // Change to the actual dashboard link
+              href="/"
               className="text-blue-600 hover:underline text-lg"
             >
-              Go to your Dashboard
+              Go to Home
             </Link>
           </div>
         </div>
