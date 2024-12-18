@@ -11,19 +11,25 @@ import Card from "@/public/assets/icons/card .png";
 import Paypal from "@/public/assets/icons/paypal.png";
 import Visa from "@/public/assets/icons/visa.png";
 
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
   const [cause, setCause] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [donateid, setDonateid] = useState<string | null>(null);
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [amount, setAmount] = useState<number | string>("");
   const [paymentMethod, setPaymentMethod] = useState<string>("");
   const [currency, setCurrency] = useState<string>("USD");
   const [convertedAmount, setConvertedAmount] = useState<string>("");
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    amount: "",
+    paymentMethod: "",
+    cause: "",
+  });
 
   // Fetch conversion rates
   useEffect(() => {
@@ -49,81 +55,97 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
+    // Reset errors
+    setErrors({
+      name: "",
+      email: "",
+      amount: "",
+      paymentMethod: "",
+      cause: "",
+    });
+  
+    let hasError = false;
+    const newErrors = { ...errors };
+  
+    // Validate name
+    if (!name.trim()) {
+      newErrors.name = "Full name is required.";
+      hasError = true;
+    }
+  
+    // Validate email
+    if (!email.trim()) {
+      newErrors.email = "Email address is required.";
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Please enter a valid email address.";
+      hasError = true;
+    }
+  
+    // Validate donation amount
+    if (!amount || parseFloat(String(amount)) <= 0) {
+      newErrors.amount = "Please enter a valid donation amount.";
+      hasError = true;
+    }
+  
     // Validate payment method
     if (!paymentMethod) {
-      toast.error("Please select a payment method.");
-      console.log("No payment method selected.");
+      newErrors.paymentMethod = "Please select a payment method.";
+      hasError = true;
+    }
+  
+    // Validate cause selection
+    if (!donateid) {
+      newErrors.cause = "Please select a cause to donate to.";
+      hasError = true;
+    }
+  
+    if (hasError) {
+      setErrors(newErrors);
       return;
     }
-
-    // Validate donation amount
-    if (!amount) {
-      toast.error("Please enter a donation amount.");
-      console.log("No donation amount entered.");
-      return;
-    }
-
-    // Check if user is logged in
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    console.log("Session data:", session);
-
-    if (session) {
-      // If user is logged in, proceed with donation
-      const { user } = session;
-
-      console.log("Logged in user:", user);
-
-      // Ensure causeId is available (you need to make sure 'donateid' is set)
-      if (!donateid) {
-        toast.error("Please select a cause to donate to.");
-        console.log("No cause selected.");
+  
+    // Retrieve the cause category from Supabase
+    try {
+      const { data: causeData, error: causeError } = await supabase
+        .from("causes")
+        .select("category_id")
+        .eq("id", donateid)
+        .single();
+  
+      if (causeError || !causeData) {
+        console.error("Error fetching cause category:", causeError);
+        setErrors({ ...newErrors, cause: "Failed to retrieve cause category." });
         return;
       }
-
+  
+      const categoryId = causeData.category_id;
+  
       // Insert donation data into the database
-      try {
-        console.log("Inserting donation:", {
-          user_id: user.id,
+      const { error: insertError } = await supabase.from("donations").insert([
+        {
+          name,
+          email,
           cause_id: donateid,
-          amount: amount,
-          currency: currency,
+          category_id: categoryId,
+          amount,
+          currency,
           payment_method: paymentMethod,
-        });
-
-        const { error } = await supabase.from("donations").insert([
-          {
-            user_id: user.id,
-            cause_id: donateid, // Make sure 'donateid' is defined and passed
-            amount: amount,
-            currency: currency,
-            payment_method: paymentMethod,
-          },
-        ]);
-
-        if (error) {
-          throw new Error(error.message);
-        }
-
-        toast.success(
-          `Thank you for your donation of ${amount} ${currency}! Your donation has been tracked.`
-        );
-        console.log("Donation successfully saved in the database.");
-
-        // Optionally, redirect to a thank you page
-        // history.push("/thank-you"); // If using React Router, for example
-      } catch (error) {
-        toast.error("Something went wrong. Please try again.");
-        console.error("Error inserting donation:", error);
+        },
+      ]);
+  
+      if (insertError) {
+        throw new Error(insertError.message);
       }
-    } else {
-      // If the user is not logged in, prompt them to create an account
-      toast.info("Please create an account to track your donation.");
-      console.log("User is not logged in.");
+  
+      // Redirect to thank-you page
+      window.location.href = "/thank-you";
+    } catch (error) {
+      console.error("Error inserting donation:", error);
     }
   };
+  
 
   useEffect(() => {
     const fetchParams = async () => {
@@ -245,6 +267,28 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                 >
                   <div>
                     <label
+                      htmlFor="text"
+                      className="block text-gray-600 text-sm mb-2"
+                    >
+                      Full Name
+                    </label>
+                    <input
+                      id="text"
+                      type="text"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className={`w-full px-4 py-2 border ${
+                        errors.name ? "border-red-500" : "border-gray-300"
+                      } rounded-md focus:ring-teal-500 focus:border-teal-500`}
+                      placeholder="Enter your full name"
+                    />
+                    {errors.name && (
+                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label
                       htmlFor="email"
                       className="block text-gray-600 text-sm mb-2"
                     >
@@ -253,10 +297,20 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                     <input
                       id="email"
                       type="email"
-                      placeholder="Enter your email"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
                       required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`w-full px-4 py-2 border ${
+                        errors.email ? "border-red-500" : "border-gray-300"
+                      } rounded-md focus:ring-teal-500 focus:border-teal-500`}
+                      placeholder="Enter your email"
                     />
+
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                   {/* Dynamic Donation Suggestions */}
                   <div className="flex space-x-4  flex-wrap gap-y-4">
@@ -286,12 +340,19 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                       placeholder="Enter amount"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
                       required
+                      className={`w-full px-4 py-2 border ${
+                        errors.amount ? "border-red-500" : "border-gray-300"
+                      } rounded-md focus:ring-teal-500 focus:border-teal-500`}
                     />
                     {convertedAmount && (
                       <p className="text-sm text-gray-600 mt-1">
                         Approx. {convertedAmount} {currency}
+                      </p>
+                    )}
+                    {errors.amount && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.amount}
                       </p>
                     )}
                   </div>
@@ -377,6 +438,11 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                         />
                       </button>
                     </div>
+                    {errors.paymentMethod && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.paymentMethod}
+                      </p>
+                    )}
                   </div>
                   {/* Tax Receipt Checkbox */}
                   <div className="flex items-center">
