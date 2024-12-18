@@ -1,12 +1,6 @@
-import { useRouter } from 'next/compat/router';
+import Link from 'next/link';
 
 const WelcomePopup = ({ showPopup, setShowPopup }) => {
-  const router = useRouter();
-
-  const handleCreateAccount = () => {
-    if (router) router.push('/signup'); // Redirect to signup page
-  };
-
   return (
     showPopup && (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300">
@@ -19,12 +13,13 @@ const WelcomePopup = ({ showPopup, setShowPopup }) => {
             Note: Donations made without an account will not be saved.
           </p>
           <div className="mt-6 flex justify-between gap-4">
-            <button
-              className="bg-teal-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-teal-600 transition-all"
-              onClick={handleCreateAccount}
-            >
-              Create Account
-            </button>
+            <Link href="/signup">
+              <button
+                className="bg-teal-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-teal-600 transition-all"
+              >
+                Create Account
+              </button>
+            </Link>
             <button
               className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md shadow-md hover:bg-gray-400 transition-all"
               onClick={() => setShowPopup(false)} // Close the popup

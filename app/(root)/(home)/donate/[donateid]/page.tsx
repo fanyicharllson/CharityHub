@@ -332,7 +332,7 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    disabled
+                    disabled={!paymentMethod || !amount}
                     className="w-full py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 transition"
                   >
                     Donate Now
