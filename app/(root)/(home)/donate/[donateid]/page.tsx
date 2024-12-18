@@ -44,6 +44,10 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
     fetchConversion();
   }, [amount, currency]);
 
+
+
+  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -63,6 +67,8 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
     // API call logic here
     alert(`Thank you for donating ${amount} ${currency}!`);
   };
+
+
 
   useEffect(() => {
     const fetchParams = async () => {
