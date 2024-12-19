@@ -4,12 +4,21 @@ import { useState } from "react";
 import Image from "next/image";
 import FaqImage from "@/public/assets/images/banner.jpg";
 
+type FaqCategory = {
+  question: string;
+  answer: string;
+};
+
+type FaqData = {
+  [key: string]: FaqCategory[];
+};
+
 const FaqSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("General");
 
-  const faqData = {
+  const faqData: FaqData = {
     General: [
       {
         question: "How do I donate?",
