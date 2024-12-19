@@ -32,7 +32,7 @@ export default function InfoPage() {
             View Causes
           </Link>
           <Link
-            href="/donate"
+            href="/causes"
             className="border border-teal-600 text-teal-600 py-3 px-6 rounded-md hover:bg-teal-100 transition transform hover:scale-105 focus:ring focus:ring-teal-300 w-full sm:w-auto"
           >
             Make a Donation
