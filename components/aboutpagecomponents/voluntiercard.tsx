@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface CardProps {
   heading: string;
   text: string;
-  image: string; // URL or image asset
+  image: StaticImageData; // URL or image asset
 }
 
 const VoluntierCard = ({ heading, text, image }: CardProps) => {
