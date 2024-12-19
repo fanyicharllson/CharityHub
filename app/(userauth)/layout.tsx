@@ -26,7 +26,7 @@ export default function SignInLayout({ children }: { children: ReactNode }) {
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="ml-2 text-xl font-bold text-teal-600">
+                  <span className="ml-2 text-2xl font-bold text-teal-600">
                     CharityHub
                   </span>
                 </Link>

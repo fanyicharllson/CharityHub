@@ -158,7 +158,7 @@ export default function Header() {
             <div className="block md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-800"
+                className="rounded bg-teal-100 py-2 px-4  text-teal-800 transition hover:text-teal-900"
               >
                 {isMobileMenuOpen ? (
                   <svg
