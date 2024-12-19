@@ -1,6 +1,12 @@
 import Link from 'next/link';
 
-const WelcomePopup = ({ showPopup, setShowPopup }) => {
+interface WelcomePopupProps {
+  showPopup: boolean;
+  setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+
+const WelcomePopup: React.FC<WelcomePopupProps> = ({ showPopup, setShowPopup }) => {
   return (
     showPopup && (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300">
