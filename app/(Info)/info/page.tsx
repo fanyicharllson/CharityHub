@@ -9,7 +9,7 @@ export default function InfoPage() {
           Welcome Back!
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 mb-4 animate-fadeInDelay">
-          You've successfully logged in.
+          You`ve successfully logged in.
         </p>
         <p className="text-teal-600 text-sm sm:text-base md:text-lg mb-6 animate-fadeInDelay2">
           While account features are temporarily unavailable, you can still explore our causes and make an impact.

@@ -5,8 +5,17 @@ import { supabase } from "@/utils/supabaseClient";
 import CauseCard from "@/components/CauseCard";
 import SkeletonLoader from "@/components/skeletonLoader";
 
+interface Cause {
+  id: number;
+  title: string;
+  description: string;
+  image_url: string;
+  goal: number;
+  raised: number;
+}
+
 const PopularCauses = () => {
-  const [causes, setCauses] = useState<any[]>([]);
+  const [causes, setCauses] = useState<Cause[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
@@ -91,7 +100,7 @@ const PopularCauses = () => {
       </p>
 
       <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {causes.map((cause: any, index: number) => (
+        {causes.map((cause: Cause, index: number) => (
           <CauseCard
             key={index}
             causeId={cause.id}

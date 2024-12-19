@@ -62,6 +62,7 @@ const VolunteerSection: React.FC = () => {
         message: "",
       });
     } catch (error) {
+      console.error("Error from volunteer component", error);
       setNotification({
         type: "error",
         message:

@@ -12,8 +12,16 @@ import Card from "@/public/assets/icons/card .png";
 import Paypal from "@/public/assets/icons/paypal.png";
 import Visa from "@/public/assets/icons/visa.png";
 
+interface Cause {
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  image_url: string;
+}
+
 const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
-  const [cause, setCause] = useState<any>(null);
+  const [cause, setCause] = useState<Cause | null>(null);
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -189,8 +197,9 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
 
         setCause(data);
         setError(null);
-      } catch (err: any) {
+      } catch (err) {
         setError("The requested cause could not be found.");
+        console.error(err);
         setCause(null);
       } finally {
         setLoading(false);
@@ -232,7 +241,7 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
           <section className="relative bg-[url(/assets/images/savelife.jpg)] py-16 bg-cover bg-center bg-no-repeat h-[300px] md:h-[400px]">
             <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-transparent"></div>
             <div className="relative mx-auto max-w-screen-2xl px-4 py-28 sm:px-6 lg:flex lg:h-screen lg:px-8 text-white text-5xl font-bold max-md:text-3xl capitalize">
-              {cause.title}
+            {cause?.title}
             </div>
           </section>
           <section className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -250,17 +259,17 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                 viewport={{ once: true }}
               >
                 <Image
-                  src={cause.image_url}
-                  alt={cause.title}
+                  src={cause?.image_url || "@/public/assets/images/voluntier2.jpeg"}
+                  alt={cause?.title || 'Image Title'}
                   width={800}
                   height={400}
                   className="rounded-lg"
                   priority
                 />
 
-                <h2 className="h2-title mb-4 mt-4">{cause.title}</h2>
-                <p className="text-gray-600 mb-4">{cause.category}</p>
-                <p className="mt-6 text-lg">{cause.description}</p>
+                <h2 className="h2-title mb-4 mt-4">{cause?.title}</h2>
+                <p className="text-gray-600 mb-4">{cause?.category}</p>
+                <p className="mt-6 text-lg">{cause?.description}</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
