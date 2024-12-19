@@ -42,7 +42,7 @@ export default function Header() {
                   fill="currentColor"
                 />
               </svg>
-              <span className="ml-2 text-xl font-bold text-teal-600">
+              <span className="ml-2 text-2xl font-bold text-teal-600">
                 CharityHub
               </span>
             </Link>
@@ -212,28 +212,30 @@ export default function Header() {
 
               <li className="relative">
                 {/* Mobile Dropdown */}
-                <button
+                <div
+                  className="cursor-pointer hover:bg-teal-100 rounded-md"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center gap-2 mobile-hover"
                 >
-                  Causes
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`h-5 w-5 transition-transform duration-300 ${
-                      isDropdownOpen ? "rotate-180" : "rotate-0"
-                    }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
+                  <button className="flex items-center gap-2 mobile-hover">
+                    Causes
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`h-5 w-5 transition-transform duration-300 ${
+                        isDropdownOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                </div>
                 {isDropdownOpen && (
                   <ul className="pl-4 space-y-2">
                     <li>
@@ -246,7 +248,7 @@ export default function Header() {
                       </Link>
                     </li>
                     <li>
-                      <Link className="mobile-hover" href="/education">
+                      <Link className="mobile-hover" href="#">
                         Education
                       </Link>
                     </li>
@@ -269,7 +271,7 @@ export default function Header() {
                   href="#"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
-                  Testimonial
+                  Events
                 </Link>
               </li>
               <li>
@@ -290,27 +292,23 @@ export default function Header() {
                   About
                 </Link>
               </li>
-              <div className="bg-teal-700 cursor-pointer rounded py-2 px-2">
-                <li>
-                  <Link
-                    className=" text-white"
-                    href="/causes"
+              <div className="flex flex-col gap-y-2">
+                <Link className=" text-white" href="/causes">
+                  <div
+                    className="bg-teal-700 cursor-pointer rounded py-3 px-2"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   >
-                    Donate
-                  </Link>
-                </li>
-              </div>
-              <div className="bg-gray-100 cursor-pointer rounded py-2 px-2">
-                <li>
-                  <Link
-                    className=" text-teal-600"
-                    href="/signin"
+                    <li>Donate</li>
+                  </div>
+                </Link>
+                <Link className=" text-teal-600" href="/signin">
+                  <div
+                    className="cursor-pointer rounded py-3 px-2 bg-teal-200"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   >
-                    Login
-                  </Link>
-                </li>
+                    <li>Login</li>
+                  </div>
+                </Link>
               </div>
             </ul>
           </nav>
