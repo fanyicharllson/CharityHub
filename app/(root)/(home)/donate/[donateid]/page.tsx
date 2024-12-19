@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { supabase } from "@/utils/supabaseClient";
 import Image from "next/image";
+import { ImSpinner2 } from "react-icons/im";
 import NotFoundPageCustom from "@/app/(notfound)/notfoundpage/page";
 import SkeletonLoader from "@/components/skeletonLoader";
 
@@ -14,6 +15,7 @@ import Visa from "@/public/assets/icons/visa.png";
 const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
   const [cause, setCause] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [donateid, setDonateid] = useState<string | null>(null);
 
@@ -55,7 +57,8 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+    setLoading2(true);
+
     // Reset errors
     setErrors({
       name: "",
@@ -64,16 +67,16 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
       paymentMethod: "",
       cause: "",
     });
-  
+
     let hasError = false;
     const newErrors = { ...errors };
-  
+
     // Validate name
     if (!name.trim()) {
       newErrors.name = "Full name is required.";
       hasError = true;
     }
-  
+
     // Validate email
     if (!email.trim()) {
       newErrors.email = "Email address is required.";
@@ -82,30 +85,30 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
       newErrors.email = "Please enter a valid email address.";
       hasError = true;
     }
-  
+
     // Validate donation amount
     if (!amount || parseFloat(String(amount)) <= 0) {
       newErrors.amount = "Please enter a valid donation amount.";
       hasError = true;
     }
-  
+
     // Validate payment method
     if (!paymentMethod) {
       newErrors.paymentMethod = "Please select a payment method.";
       hasError = true;
     }
-  
+
     // Validate cause selection
     if (!donateid) {
       newErrors.cause = "Please select a cause to donate to.";
       hasError = true;
     }
-  
+
     if (hasError) {
       setErrors(newErrors);
       return;
     }
-  
+
     // Retrieve the cause category from Supabase
     try {
       const { data: causeData, error: causeError } = await supabase
@@ -113,15 +116,18 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
         .select("category_id")
         .eq("id", donateid)
         .single();
-  
+
       if (causeError || !causeData) {
         console.error("Error fetching cause category:", causeError);
-        setErrors({ ...newErrors, cause: "Failed to retrieve cause category." });
+        setErrors({
+          ...newErrors,
+          cause: "Failed to retrieve cause category.",
+        });
         return;
       }
-  
+
       const categoryId = causeData.category_id;
-  
+
       // Insert donation data into the database
       const { error: insertError } = await supabase.from("donations").insert([
         {
@@ -134,18 +140,17 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
           payment_method: paymentMethod,
         },
       ]);
-  
+
       if (insertError) {
         throw new Error(insertError.message);
       }
-  
+
       // Redirect to thank-you page
       window.location.href = "/thank-you";
     } catch (error) {
       console.error("Error inserting donation:", error);
     }
   };
-  
 
   useEffect(() => {
     const fetchParams = async () => {
@@ -165,6 +170,7 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
       setError("Invalid cause ID. Please enter a valid ID.");
       setCause(null);
       setLoading(false);
+      setLoading2(false);
       return;
     }
 
@@ -188,6 +194,7 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
         setCause(null);
       } finally {
         setLoading(false);
+        setLoading2(false);
       }
     };
 
@@ -459,9 +466,21 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 transition"
+                    disabled={loading2}
+                    className={`w-full py-3 rounded-lg font-semibold text-white text-sm tracking-wide shadow-md transition-transform focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 ${
+                      loading2
+                        ? "bg-teal-800 cursor-not-allowed"
+                        : "bg-teal-600 hover:bg-teal-700 hover:-translate-y-0.5"
+                    }`}
                   >
-                    Donate Now
+                    {loading2 ? (
+                      <div className="flex items-center justify-center space-x-2">
+                        <ImSpinner2 className="animate-spin h-5 w-5 text-white" />
+                        <span>Processing Donation...</span>
+                      </div>
+                    ) : (
+                      "Donate Now"
+                    )}
                   </button>
                 </form>
               </motion.div>
