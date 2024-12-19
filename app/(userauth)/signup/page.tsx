@@ -166,14 +166,17 @@ export default function SignUp() {
 
         {/* Additional Links */}
         <div className="mt-6 flex justify-between items-center text-sm text-gray-600">
+            <p className="flex gap-1">
+            Already have an account?
           <Link
             href="/signin"
             className="text-teal-500 hover:text-teal-600 transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-teal-400 rounded"
           >
-            Already have an account? Log in
+            Log in
           </Link>
+            </p>
           <Link
-            href="/forgot-password"
+            href="#"
             className="text-teal-500 hover:text-teal-600 transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-teal-400 rounded"
           >
             Forgot Password?
