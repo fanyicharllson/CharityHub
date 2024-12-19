@@ -475,7 +475,7 @@ const DonatePage = ({ params }: { params: Promise<{ donateid: string }> }) => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    disabled={loading2}
+                    disabled={loading}
                     className={`w-full py-3 rounded-lg font-semibold text-white text-sm tracking-wide shadow-md transition-transform focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 ${
                       loading2
                         ? "bg-teal-800 cursor-not-allowed"
