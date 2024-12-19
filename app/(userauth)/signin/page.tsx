@@ -107,7 +107,7 @@ const SignIn = () => {
             disabled={loading}
             className={`w-full py-3 rounded-lg font-semibold text-white text-sm tracking-wide shadow-md transition-transform focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 ${
               loading
-                ? "bg-teal-300 cursor-not-allowed"
+                ? "bg-teal-600 cursor-not-allowed"
                 : "bg-teal-500 hover:bg-teal-600 hover:-translate-y-0.5"
             }`}
           >
@@ -119,7 +119,7 @@ const SignIn = () => {
         <div className="mt-6 flex justify-between max-sm:flex-col items-center text-sm text-gray-600">
           <div>
             <Link
-              href="/forgot-password"
+              href="#"
               className="text-teal-500 hover:text-teal-600 transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-teal-400 rounded"
             >
               Forgot Password?
