@@ -12,7 +12,7 @@ export default function ThankyouPage() {
           Your generosity lights up lives.
         </p>
         <p className="text-teal-600 text-sm sm:text-base md:text-lg mb-6 animate-fadeInDelay2">
-          Together, we're creating a ripple of hope and changing the world, one
+          Together, we`re creating a ripple of hope and changing the world, one
           act of kindness at a time.
         </p>
         <p className="text-gray-700 text-sm sm:text-base md:text-lg mb-6 animate-fadeInDelay2">
@@ -20,7 +20,7 @@ export default function ThankyouPage() {
           meaningful use. Thank you for believing in the power of compassion. ❤️
         </p>
         <p className="text-gray-700 text-sm sm:text-base md:text-lg mb-6 animate-fadeInDelay2">
-          Feel proud—because you've made a real difference today.
+          Feel proud—because you`ve made a real difference today.
         </p>
         {/* Buttons with Hover and Ripple Effects */}
         <div className="mt-4 flex flex-col sm:flex-row justify-center gap-4">
