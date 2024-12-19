@@ -38,7 +38,11 @@ export default function SignUp() {
         router.push("/signin"); // Redirect to sign in page after some time
       }, 10000);
     } catch (err) {
-      setError(err.message);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred.");
+      }
     } finally {
       setLoading(false);
     }
@@ -166,15 +170,15 @@ export default function SignUp() {
 
         {/* Additional Links */}
         <div className="mt-6 flex justify-between items-center text-sm text-gray-600">
-            <p className="flex gap-1">
+          <p className="flex gap-1">
             Already have an account?
-          <Link
-            href="/signin"
-            className="text-teal-500 hover:text-teal-600 transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-teal-400 rounded"
-          >
-            Log in
-          </Link>
-            </p>
+            <Link
+              href="/signin"
+              className="text-teal-500 hover:text-teal-600 transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-teal-400 rounded"
+            >
+              Log in
+            </Link>
+          </p>
           <Link
             href="#"
             className="text-teal-500 hover:text-teal-600 transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-teal-400 rounded"
