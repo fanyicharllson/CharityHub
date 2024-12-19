@@ -107,8 +107,8 @@ const SignIn = () => {
             disabled={loading}
             className={`w-full py-3 rounded-lg font-semibold text-white text-sm tracking-wide shadow-md transition-transform focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 ${
               loading
-                ? "bg-teal-600 cursor-not-allowed"
-                : "bg-teal-500 hover:bg-teal-600 hover:-translate-y-0.5"
+                ? "bg-teal-800 cursor-not-allowed"
+                : "bg-teal-600 hover:bg-teal-700 hover:-translate-y-0.5"
             }`}
           >
             {loading ? "Signing In..." : "Sign In"}
