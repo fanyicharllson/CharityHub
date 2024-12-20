@@ -39,15 +39,15 @@ export default function SignInLayout({ children }: { children: ReactNode }) {
 
         <footer className="mt-8 text-center py-4 w-full">
           <div className="text-sm">
-            <Link href="#" className="hover:underline">
+            <Link href="/notfoundpage" className="hover:underline">
               Terms of Service
             </Link>{" "}
             •
-            <Link href="#" className="hover:underline">
+            <Link href="/notfoundpage" className="hover:underline">
               Privacy Policy
             </Link>{" "}
             •
-            <Link href="#" className="hover:underline">
+            <Link href="/notfoundpage" className="hover:underline">
               Help Center
             </Link>
           </div>
