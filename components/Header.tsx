@@ -113,7 +113,7 @@ export default function Header() {
                 </li>
 
                 <li>
-                  <Link className="header-link" href="#">
+                  <Link className="header-link" href="/notfoundpage">
                     Events
                   </Link>
                 </li>
@@ -268,7 +268,7 @@ export default function Header() {
               <li>
                 <Link
                   className="mobile-hover"
-                  href="#"
+                  href="/notfoundpage"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                   Events

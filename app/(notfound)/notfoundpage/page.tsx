@@ -13,7 +13,7 @@ export default function NotFoundPageCustom() {
               The page you seek is not there. But together, we can make a difference and bring hope where it’s needed.
             </p>
             {/* Buttons with Hover and Ripple Effects */}
-            <div className="mt-4 flex justify-center gap-4">
+            <div className="mt-4 flex justify-center gap-4 max-sm:flex-col">
               <Link
                 href="/causes"
                 className="bg-teal-500 text-white py-3 px-6 rounded-md shadow-md hover:bg-teal-600 transition transform hover:scale-105 focus:ring focus:ring-teal-300"

@@ -152,7 +152,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-gray-400 transition hover:text-gray-500"
-                    href="#"
+                    href="/notfoundpage"
                   >
                     Events
                   </Link>
@@ -186,7 +186,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-gray-400 transition hover:text-gray-500"
-                    href="#"
+                    href="/notfoundpage"
                   >
                     {" "}
                     Careers{" "}
@@ -196,7 +196,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-gray-400 transition hover:text-gray-500"
-                    href="#"
+                    href="/notfoundpage"
                   >
                     {" "}
                     History{" "}
@@ -206,7 +206,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-gray-400 transition hover:text-gray-500"
-                    href="#"
+                    href="/notfoundpage"
                   >
                     {" "}
                     Our Team{" "}
@@ -232,7 +232,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-gray-400 transition hover:text-gray-500"
-                    href="#"
+                    href="/contact"
                   >
                     {" "}
                     Contact{" "}
@@ -242,7 +242,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="text-gray-400 transition hover:text-gray-500"
-                    href="#"
+                    href="/notfoundpage"
                   >
                     {" "}
                     Live Chat{" "}
@@ -255,18 +255,18 @@ const Footer = () => {
 
         <div className="mt-16 border-t border-gray-100 pt-8">
           <div className="flex gap-3 justify-center items-center text-center">
-          <Link href="#" className="text-gray-200 text-sm underline transition hover:text-gray-300">
+          <Link href="/notfoundpage" className="text-gray-200 text-sm underline transition hover:text-gray-300">
             Terms & Condition
             </Link>
             <Link
-              href="#"
+              href="/notfoundpage"
               className="text-gray-200 underline text-sm transition hover:text-gray-300"
             >
               Privacy Policy 
             </Link>
            
             <Link
-              href="#"
+              href="/notfoundpage"
               className="text-gray-200 underline text-sm transition hover:text-gray-300"
             >
               Cookies 
