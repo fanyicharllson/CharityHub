@@ -76,7 +76,7 @@ const VerifyEmailPage = () => {
               explore causes
             </Link>{" "}
             or{" "}
-            <Link href="/donate" className="text-teal-500 hover:underline">
+            <Link href="/causes" className="text-teal-500 hover:underline">
               make a donation
             </Link>{" "}
             while we resolve the issue. Thank you for your patience and support!
